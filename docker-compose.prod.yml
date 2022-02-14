@@ -1,0 +1,33 @@
+version: "3.8"
+
+services:
+  web:
+    depends_on:
+      - api
+    build:
+      context: ./client
+      dockerfile: Dockerfile.prod
+    ports:
+      - 3000:80
+    stdin_open: true
+    restart: unless-stopped
+  api:
+    depends_on:
+      - db
+    build: ./server
+    ports:
+      - 3001:3001
+    environment:
+      DB_URL: mongodb://db/file-archive
+    restart: unless-stopped
+  db:
+    image: mongo:4.0.28-xenial
+    ports:
+      - 27017:27017
+    volumes:
+      - db-data:/data/db
+    restart: unless-stopped
+
+volumes:
+  db-data:
+  build:

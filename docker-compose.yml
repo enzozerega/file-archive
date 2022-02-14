@@ -1,0 +1,30 @@
+version: "3.8"
+
+services:
+  web:
+    depends_on:
+      - api
+    build: ./client
+    ports:
+      - 3000:3000
+    volumes:
+      - ./client:/file-archive/client
+  api:
+    depends_on:
+      - db
+    build: ./server
+    ports:
+      - 3001:3001
+    volumes:
+      - ./server:/file-archive/server
+    environment:
+      DB_URL: mongodb://db/file-archive
+  db:
+    image: mongo:4.0.28-xenial
+    ports:
+      - 27017:27017
+    volumes:
+      - db-data:/data/db
+
+volumes:
+  db-data:
