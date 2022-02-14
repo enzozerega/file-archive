@@ -1,6 +1,7 @@
 ## File archive
 
-**Requirements**: Docker (and docker Compose)
+**Requirements**: 
+Docker (and Docker Compose)
 
 To run the app excecute the following command in the application root folder:
 
