@@ -1,0 +1,10 @@
+FROM node:16.14.0-alpine AS builder
+
+WORKDIR /file-archive/client
+
+COPY build build/
+
+FROM nginx:stable-alpine
+COPY --from=builder /file-archive/client/build /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]  
