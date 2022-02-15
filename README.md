@@ -4,7 +4,7 @@
 
 Docker (and Docker Compose)
 
-The app was build using React in the client side and Node.js, Express, and MongoDB in the server side. Uploaded files are stored in a server folder and their metadata is stored in a database collection.
+The app was built using React in the client side and Node.js, Express, and MongoDB in the server side. Uploaded files are stored in a server folder and their metadata is stored in a database collection.
 
 **App flow**
 
