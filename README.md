@@ -16,10 +16,4 @@ To run the app execute the following command in the application root folder:
 docker-compose -f docker-compose.prod.yml up
 ```
 
-For the development version run:
-
-```bash
-docker-compose up
-```
-
 The application is served to `http://localhost:3000/`
