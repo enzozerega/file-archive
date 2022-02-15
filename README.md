@@ -17,3 +17,9 @@ docker-compose -f docker-compose.prod.yml up
 ```
 
 The application is served to `http://localhost:3000/`
+
+To run the development version, run `npm install` both in the client and server folders. Then execute the following command in the application root folder:
+
+```bash
+docker-compose up
+```
