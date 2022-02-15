@@ -1,10 +1,9 @@
+import { useEffect, useState } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { ThemeProvider } from "@mui/material/styles";
 import { CssBaseline } from "@mui/material";
-import { theme } from "./styles";
+import { theme, useStyles } from "./styles";
 import { Home, Upload } from "./views";
-import { useStyles } from "./styles";
-import { useEffect, useState } from "react";
 import { Header } from "./components";
 
 const App = () => {

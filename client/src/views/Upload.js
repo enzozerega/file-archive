@@ -16,6 +16,7 @@ export const Upload = ({ uploadedBy }) => {
     event.preventDefault();
 
     const data = new FormData();
+
     Object.entries({
       name,
       description,
@@ -48,6 +49,7 @@ export const Upload = ({ uploadedBy }) => {
           setFile(files[0]);
         }}
       />
+
       <label htmlFor="name">Filename</label>
       <input
         type="text"
@@ -59,6 +61,7 @@ export const Upload = ({ uploadedBy }) => {
           setName(event.target.value);
         }}
       />
+
       <label htmlFor="description">Description</label>
       <input
         type="text"

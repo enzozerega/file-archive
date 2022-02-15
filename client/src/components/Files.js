@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
+import { Clear, KeyboardArrowDown, KeyboardArrowUp } from "@mui/icons-material";
 import { api } from "../services";
 import { useStyles } from "../styles";
-import { Clear, KeyboardArrowDown, KeyboardArrowUp } from "@mui/icons-material";
 import { FileType } from "./FileType";
 
 export const Files = () => {
@@ -16,8 +16,10 @@ export const Files = () => {
     const {
       files: { page: responsePage, pages, files },
     } = await api.listFiles(page, sort);
+
     setFiles(files);
     setPages(pages);
+
     if (responsePage === 1) return;
     if (files.length !== 0) setPage(parseInt(responsePage));
     else setPage(parseInt(responsePage) - 1);
@@ -29,6 +31,7 @@ export const Files = () => {
 
   const handleRemove = async (id) => {
     const { status } = await api.removeFile(id);
+
     if (status !== 204) console.error("File deletion failed");
     else listFiles();
   };
@@ -41,8 +44,16 @@ export const Files = () => {
     });
   };
 
+  const getDownloadPath = (filePath) => {
+    return `http://localhost:3001/api/files/download/${filePath.replace(
+      "uploads/",
+      ""
+    )}`;
+  };
+
   const handleNextPage = () => {
     const newPage = page + 1;
+
     setPage(newPage);
   };
 
@@ -56,6 +67,7 @@ export const Files = () => {
         property: property,
         order: sort.order === "desc" ? "asc" : "desc",
       };
+
       setSort(result);
     } else setSort({ property, order: "asc" });
   };
@@ -125,10 +137,7 @@ export const Files = () => {
               <div key={`file-${index}`} className={classes.tableRow}>
                 <a
                   className={classes.tableBody}
-                  href={`http://localhost:3001/api/files/download/${path.replace(
-                    "uploads/",
-                    ""
-                  )}`}
+                  href={getDownloadPath(path)}
                   download
                 >
                   <div className={`${classes.tableCol} ${classes.tableIcon}`}>

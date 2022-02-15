@@ -30,6 +30,7 @@ export const Users = ({ setUser }) => {
 
   const handleSelect = ({ target: { value } }) => {
     localStorage.setItem("user", value);
+
     setUser(value);
   };
   return (
@@ -51,6 +52,7 @@ export const Users = ({ setUser }) => {
           </option>
         ))}
       </select>
+
       <label htmlFor="new">New user</label>
       <input
         type="text"
@@ -60,6 +62,7 @@ export const Users = ({ setUser }) => {
           setNewUser(event.target.value);
         }}
       />
+
       <button>Add user</button>
     </form>
   );

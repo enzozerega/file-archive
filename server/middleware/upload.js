@@ -8,8 +8,8 @@ const getSuffix = (fileType) => {
 
 const storage = multer.diskStorage({
   destination: "uploads",
-  filename: (req, file, cb) => {
-    cb(null, `${req.body.name}.${getSuffix(file.mimetype)}`);
+  filename: (req, file, callback) => {
+    callback(null, `${req.body.name}.${getSuffix(file.mimetype)}`);
   },
 });
 

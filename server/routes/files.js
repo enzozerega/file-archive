@@ -1,13 +1,14 @@
 const express = require("express");
 const File = require("../models/file");
 const upload = require("../middleware/upload");
-var path = require("path");
+const path = require("path");
 const fs = require("fs");
 
 const router = express.Router();
 
 router.get("/", async (req, res) => {
   let { page, sort, order } = req.query;
+
   if (!page) page = 1;
   if (!sort) sort = "date";
   if (!order) order = -1;
@@ -16,6 +17,7 @@ router.get("/", async (req, res) => {
   const limit = 5;
   const skip = (page - 1) * limit;
   const collection = File.find();
+
   collection.count(async (err, count) => {
     if (err) console.log(err);
     else {
@@ -35,6 +37,7 @@ router.get("/", async (req, res) => {
 router.get("/download/:filepath", function (req, res) {
   const { filepath } = req.params;
   const file = path.join(__dirname, "../uploads", filepath);
+
   res.download(file);
 });
 
@@ -53,7 +56,9 @@ router.post("/", upload.single("file"), async (req, res) => {
       date,
       path,
     });
+
     await file.save();
+
     res.status(201).send(file);
   } catch (e) {
     res.status(409).send(e);
@@ -62,6 +67,7 @@ router.post("/", upload.single("file"), async (req, res) => {
 
 router.delete("/:id", async (req, res) => {
   const file = await File.findByIdAndDelete(req.params.id);
+
   if (!file) return res.status(404).send("File not found.");
 
   const filepath = path.join(
@@ -69,6 +75,7 @@ router.delete("/:id", async (req, res) => {
     "../uploads",
     file.path.replace("uploads/", "")
   );
+
   try {
     fs.unlinkSync(filepath);
   } catch (err) {

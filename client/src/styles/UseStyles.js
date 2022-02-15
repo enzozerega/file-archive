@@ -1,7 +1,5 @@
 import { makeStyles } from "@mui/styles";
 
-// Custom styles. Accessed using useStyles().
-
 const useStyles = makeStyles((theme) => ({
   container: {
     backgroundColor: "#343434",
@@ -39,7 +37,6 @@ const useStyles = makeStyles((theme) => ({
   },
   tableCol: {
     flex: 1,
-    // border: "1px solid white",
     overflow: "hidden",
   },
   tableRows: {
